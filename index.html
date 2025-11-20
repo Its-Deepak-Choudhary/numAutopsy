@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mobile Number Info Checker</title>
+<style>
+body {
+  background: #000;
+  color: #0f0;
+  font-family: Arial;
+}
+.box {
+  max-width: 450px;
+  margin: auto;
+  margin-top: 40px;
+  padding: 20px;
+  background: #111;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #0f0;
+}
 
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #0f0;
+  border-radius: 8px;
+  background: #000;
+  color: #0f0;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 18px;
+  background: #0f0;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+}
+
+#result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #000;
+  border: 1px solid #0f0;
+  border-radius: 10px;
+  height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>📱 Mobile Number Info Checker</h2>
+
+  <input id="number" class="input-field" placeholder="Enter 10 digit mobile number">
+
+  <button class="btn" onclick="checkNumber()">CHECK NUMBER</button>
+
+  <pre id="result">Result will appear here...</pre>
+</div>
+
+<script>
+async function checkNumber() {
+    const number = document.getElementById("number").value;
+    if(number.length !== 10){
+        document.getElementById("result").innerText = "❌ Number must be exactly 10 digits.";
+        return;
+    }
+
+    document.getElementById("result").innerText = "⏳ Checking...";
+
+    const api = "YOUR_GOOGLE_SCRIPT_URL_HERE";  
+
+    const res = await fetch(api + "?number=" + number);
+    const data = await res.json();
+
+    document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
