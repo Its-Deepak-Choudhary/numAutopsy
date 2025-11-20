@@ -74,7 +74,7 @@ async function checkNumber() {
 
     document.getElementById("result").innerText = "⏳ Checking...";
 
-    const api = "YOUR_GOOGLE_SCRIPT_URL_HERE";  
+    const api = "https://script.google.com/macros/s/AKfycbwzWWCuS-Cr6VdOImpvP6fueLbkVxSDOvtbXprRps7JuuZPStC3ib2G8ViGrgschSNs/exec";  
 
     const res = await fetch(api + "?number=" + number);
     const data = await res.json();
